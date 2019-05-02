@@ -30,7 +30,7 @@ download_friends_photos = True
 friends_small_size = True
 photos_small_size = True
 
-total_scrolls = 5000
+total_scrolls = 50
 current_scrolls = 0
 scroll_time = 5
 
@@ -154,7 +154,7 @@ def get_status(x):
         status = x.find_element_by_xpath(".//div[@class='_5wj-']").text
     except:
         try:
-            status = x.find_element_by_xpath(".//div[@class='userContent']").text
+            status = x.find_element_by_xpath(".//div[@class='_5pbx userContent _3576']").text
         except:
             pass
     return status
@@ -489,66 +489,66 @@ def scrap_profile(ids):
 
         print("\nScraping:", id)
 
-        try:
-            if not os.path.exists(os.path.join(folder, id.split('/')[-1])):
-                os.mkdir(os.path.join(folder, id.split('/')[-1]))
-            else:
-                print("A folder with the same profile name already exists."
-                      " Kindly remove that folder first and then run this code.")
-                continue
-            os.chdir(os.path.join(folder, id.split('/')[-1]))
-        except:
-            print("Some error occurred in creating the profile directory.")
-            continue
+#        try:
+#            if not os.path.exists(os.path.join(folder, id.split('/')[-1])):
+#                os.mkdir(os.path.join(folder, id.split('/')[-1]))
+#            else:
+#                print("A folder with the same profile name already exists."
+#                      " Kindly remove that folder first and then run this code.")
+#                continue
+#            os.chdir(os.path.join(folder, id.split('/')[-1]))
+#        except:
+#            print("Some error occurred in creating the profile directory.")
+#            continue
 
         # ----------------------------------------------------------------------------
-        print("----------------------------------------")
-        print("Friends..")
-        # setting parameters for scrap_data() to scrap friends
-        scan_list = ["All", "Following", "Followers", "Work", "College", "Current City", "Hometown"]
-        section = ["/friends", "/following", "/followers", "/friends_work", "/friends_college", "/friends_current_city",
-                   "/friends_hometown"]
-        elements_path = ["//*[contains(@id,'pagelet_timeline_medley_friends')][1]/div[2]/div/ul/li/div/a",
-                         "//*[contains(@class,'_3i9')][1]/div/div/ul/li[1]/div[2]/div/div/div/div/div[2]/ul/li/div/a",
-                         "//*[contains(@class,'fbProfileBrowserListItem')]/div/a",
-                         "//*[contains(@id,'pagelet_timeline_medley_friends')][1]/div[2]/div/ul/li/div/a",
-                         "//*[contains(@id,'pagelet_timeline_medley_friends')][1]/div[2]/div/ul/li/div/a",
-                         "//*[contains(@id,'pagelet_timeline_medley_friends')][1]/div[2]/div/ul/li/div/a",
-                         "//*[contains(@id,'pagelet_timeline_medley_friends')][1]/div[2]/div/ul/li/div/a"]
-        file_names = ["All Friends.txt", "Following.txt", "Followers.txt", "Work Friends.txt", "College Friends.txt",
-                      "Current City Friends.txt", "Hometown Friends.txt"]
-        save_status = 0
-
-        scrap_data(id, scan_list, section, elements_path, save_status, file_names)
-        print("Friends Done")
-        # ----------------------------------------------------------------------------
-
-        print("----------------------------------------")
-        print("Photos..")
-        print("Scraping Links..")
-        # setting parameters for scrap_data() to scrap photos
-        scan_list = ["'s Photos", "Photos of"]
-        section = ["/photos_all", "/photos_of"]
-        elements_path = ["//*[contains(@id, 'pic_')]"] * 2
-        file_names = ["Uploaded Photos.txt", "Tagged Photos.txt"]
-        save_status = 1
-
-        scrap_data(id, scan_list, section, elements_path, save_status, file_names)
-        print("Photos Done")
-
-        # ----------------------------------------------------------------------------
-
-        print("----------------------------------------")
-        print("Videos:")
-        # setting parameters for scrap_data() to scrap videos
-        scan_list = ["'s Videos", "Videos of"]
-        section = ["/videos_by", "/videos_of"]
-        elements_path = ["//*[contains(@id, 'pagelet_timeline_app_collection_')]/ul"] * 2
-        file_names = ["Uploaded Videos.txt", "Tagged Videos.txt"]
-        save_status = 2
-
-        scrap_data(id, scan_list, section, elements_path, save_status, file_names)
-        print("Videos Done")
+#        print("----------------------------------------")
+#        print("Friends..")
+#        # setting parameters for scrap_data() to scrap friends
+#        scan_list = ["All", "Following", "Followers", "Work", "College", "Current City", "Hometown"]
+#        section = ["/friends", "/following", "/followers", "/friends_work", "/friends_college", "/friends_current_city",
+#                   "/friends_hometown"]
+#        elements_path = ["//*[contains(@id,'pagelet_timeline_medley_friends')][1]/div[2]/div/ul/li/div/a",
+#                         "//*[contains(@class,'_3i9')][1]/div/div/ul/li[1]/div[2]/div/div/div/div/div[2]/ul/li/div/a",
+#                         "//*[contains(@class,'fbProfileBrowserListItem')]/div/a",
+#                         "//*[contains(@id,'pagelet_timeline_medley_friends')][1]/div[2]/div/ul/li/div/a",
+#                         "//*[contains(@id,'pagelet_timeline_medley_friends')][1]/div[2]/div/ul/li/div/a",
+#                         "//*[contains(@id,'pagelet_timeline_medley_friends')][1]/div[2]/div/ul/li/div/a",
+#                         "//*[contains(@id,'pagelet_timeline_medley_friends')][1]/div[2]/div/ul/li/div/a"]
+#        file_names = ["All Friends.txt", "Following.txt", "Followers.txt", "Work Friends.txt", "College Friends.txt",
+#                      "Current City Friends.txt", "Hometown Friends.txt"]
+#        save_status = 0
+#
+#        scrap_data(id, scan_list, section, elements_path, save_status, file_names)
+#        print("Friends Done")
+#        # ----------------------------------------------------------------------------
+#
+#        print("----------------------------------------")
+#        print("Photos..")
+#        print("Scraping Links..")
+#        # setting parameters for scrap_data() to scrap photos
+#        scan_list = ["'s Photos", "Photos of"]
+#        section = ["/photos_all", "/photos_of"]
+#        elements_path = ["//*[contains(@id, 'pic_')]"] * 2
+#        file_names = ["Uploaded Photos.txt", "Tagged Photos.txt"]
+#        save_status = 1
+#
+#        scrap_data(id, scan_list, section, elements_path, save_status, file_names)
+#        print("Photos Done")
+#
+#        # ----------------------------------------------------------------------------
+#
+#        print("----------------------------------------")
+#        print("Videos:")
+#        # setting parameters for scrap_data() to scrap videos
+#        scan_list = ["'s Videos", "Videos of"]
+#        section = ["/videos_by", "/videos_of"]
+#        elements_path = ["//*[contains(@id, 'pagelet_timeline_app_collection_')]/ul"] * 2
+#        file_names = ["Uploaded Videos.txt", "Tagged Videos.txt"]
+#        save_status = 2
+#
+#        scrap_data(id, scan_list, section, elements_path, save_status, file_names)
+#        print("Videos Done")
         # ----------------------------------------------------------------------------
 
         print("----------------------------------------")
@@ -575,7 +575,7 @@ def scrap_profile(ids):
         elements_path = ['//div[@class="_5pcb _4b0l _2q8l"]', '//div[@class="_5pbx userContent _3576"]']
 
 
-        file_names = ["Posts.txt"]
+        file_names = ["Posts.txt", "Posts_words.txt"]
         save_status = 4
 
         scrap_data(id, scan_list, section, elements_path, save_status, file_names)
