@@ -572,7 +572,8 @@ def scrap_profile(ids):
         # setting parameters for scrap_data() to scrap posts
         scan_list = [None]
         section = []
-        elements_path = ['//div[@class="_5pcb _4b0l _2q8l"]']
+        elements_path = ['//div[@class="_5pcb _4b0l _2q8l"]', '//div[@class="_5pbx userContent _3576"]']
+
 
         file_names = ["Posts.txt"]
         save_status = 4
@@ -603,13 +604,14 @@ def login(email, password):
         options.add_argument("--disable-infobars")
         options.add_argument("--mute-audio")
         # options.add_argument("headless")
+        webdriver.ChromeOptions.binary_location = r'C:\Program Files (x86)\Google\Chrome Beta\Application\chrome.exe'
 
         try:
             platform_ = platform.system().lower()
             if platform_ in ['linux', 'darwin']:
                 driver = webdriver.Chrome(executable_path="./chromedriver", options=options)
             else:
-                driver = webdriver.Chrome(executable_path="./chromedriver.exe", options=options)
+                driver = webdriver.Chrome(executable_path=r'D:\Ultimate-Facebook-Scraper\Code\chromedriver.exe', options=options)
         except:
             print("Kindly replace the Chrome Web Driver with the latest one from"
                   "http://chromedriver.chromium.org/downloads"
@@ -635,14 +637,14 @@ def login(email, password):
 
 # -----------------------------------------------------------------------------
 # -----------------------------------------------------------------------------
-
+testfile= r'D:\Ultimate-Facebook-Scraper\Code\input.txt'
 def main():
-    ids = ["https://en-gb.facebook.com/" + line.split("/")[-1] for line in open("input.txt", newline='\n')]
+    ids = ["https://en-gb.facebook.com/" + line.split("/")[-1] for line in open(testfile, newline='\n')]
 
     if len(ids) > 0:
         # Getting email and password from user to login into his/her profile
-        email = input('\nEnter your Facebook Email: ')
-        password = getpass.getpass()
+        email = 'ghostwmost@hotmail.com'
+        password = 'B0mbkat*63' #getpass.getpass()
 
         print("\nStarting Scraping...")
 
